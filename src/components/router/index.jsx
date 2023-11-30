@@ -1,4 +1,5 @@
-import { Dashboard, DemoTabel, FormControl, Login } from "pages";
+import { Dashboard,  Datauser, Login, Pengumuman } from "pages";
+import Datapengajuancuti from "pages/datamaster/datapengajuancuti";
 
 const MenuRoutes = [
   {
@@ -13,19 +14,21 @@ const MenuRoutes = [
     title: "Dashboard",
     component: () => <Dashboard />
   },
-  {
-    path: "/demo-tabel",
-    exact: true,
-    title: "Demo Tabel",
-    component: () => <DemoTabel />
-  },
+
 
   {
-    path: "/form-control",
+    path: "/data-user",
     exact: true,
     title: "Form Control",
-    component: () => <FormControl />
+    component: () => <Datauser />
   },
+  {
+    path: "/data-pengajuan-cuti",
+    exact: true,
+    title: "Form Control",
+    component: () => <Datapengajuancuti/>
+  },
+  
  
 ];
 

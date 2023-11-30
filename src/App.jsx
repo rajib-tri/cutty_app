@@ -52,6 +52,7 @@ const App = () => {
   const handleToggleMenuSidebar = () => {
     dispatch(utilityAction.toggleSidebarMenu(!menuSidebarCollapsed));
   };
+
   return (
     <div className="wrapper">
       {header && <Header />}

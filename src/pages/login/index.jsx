@@ -1,12 +1,16 @@
-import { React, useDispatch, useEffect } from "components";
+import { React, postData, useDispatch, useEffect } from "components";
 import { actionTheme, utilityAction } from "reduxStore";
 import { withRouter } from "react-router-dom";
 import FormLogin from "./form";
+import { ToastNotification, getItem, setItem } from "components/helper";
 
 const Login = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(getItem("datauser")?.accessToken !== undefined){
+      props.history.push("/dashboard");
+    }
     dispatch(actionTheme.handleSetPageSidebar(false));
     dispatch(actionTheme.handleSetFooter(false));
     dispatch(actionTheme.handleSetPageHeader(false));
@@ -16,27 +20,49 @@ const Login = (props) => {
       dispatch(actionTheme.handleSetFooter(true));
       dispatch(actionTheme.handleSetPageHeader(true));
     };
+    // eslint-disable-next-line
   }, [dispatch]);
 
-  const handleSubmit = () => {
-    dispatch(utilityAction.setProgres());
-    dispatch(
-      utilityAction.setLoading({
-        content: true,
-        button: true
+  const handleSubmit = async (data) => {
+    // console.log(data);
+    try {
+      let response = await postData("auth/login", {
+        email : data.email,
+        password : data.password,
       })
-    );
-    setTimeout(() => {
-      dispatch(utilityAction.stopLoading());
-      props.history.push("/dashboard");
-    }, 4000);
+
+      
+
+      if (response) {
+        setItem("datauser", response);
+
+
+        dispatch(utilityAction.setProgres());
+        dispatch(
+          utilityAction.setLoading({
+            content: true,
+            button: true,
+          })
+        );
+        setTimeout(() => {
+          dispatch(utilityAction.stopLoading());
+          props.history.push("/dashboard");
+        }, 4000);
+      } else {
+        ToastNotification("info", "Password Atau Username Salah");
+      }
+    } catch (error) {
+      console.log(error);
+      ToastNotification("info", "Password Atau Username Salah");
+    }
   };
+
   return (
     <div className="login-box container" style={{ marginTop: "10%" }}>
       <div className="card card-outline card-primary">
         <div className="card-header text-center">
           <div className="h1">
-            <b>Admin</b>LTE
+            <b>LOGIN</b>CUTTY
           </div>
         </div>
         <div className="card-body">
@@ -47,5 +73,6 @@ const Login = (props) => {
     </div>
   );
 };
+
 
 export default withRouter(Login);

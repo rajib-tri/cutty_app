@@ -17,7 +17,9 @@ import {
   addWindowClass,
   calculateWindowSize,
   useWindowSize,
-  removeWindowClass
+  removeWindowClass,
+  HiiddenFiled,
+  converDate
 } from "./helper";
 import { connect } from "react-redux";
 import { Field } from "redux-form";
@@ -28,7 +30,16 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import ModalGlobal from "./helper/ModalGlobal";
 import TabelMaster from "./helper/TabelMaster";
+import { deletData, getData, postData, putData,createData } from "./helper/Axios";
 export {
+
+  createData,
+  converDate,
+  putData,
+  deletData,
+  HiiddenFiled,
+  postData,
+  getData,
   ModalGlobal,
   TabelMaster,
   Provider,

@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <Link to="/" className="brand-link text-center">
-        <span className="brand-text font-weight-light text-center">AdminLTE 3</span>
+        <span className="brand-text font-weight-light text-center">PENGAJUAN CUTI</span>
       </Link>
       <div className="sidebar">
         <nav className="mt-2">

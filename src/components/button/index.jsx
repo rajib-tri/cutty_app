@@ -4,14 +4,14 @@ import { selectorUtility } from "reduxStore";
 const Button = (props) => {
   const isLoading = useSelector(selectorUtility.loading);
 
-  const { icon, title, onClick,textLoading, loading, type, color, block } = props;
+  const { icon, title, onClick,textLoading, loading, type, color, block,disabled,className } = props;
 
   return (
     <button
-      disabled={loading ? (isLoading.button ? "disabled" : "") : ""}
+      disabled={disabled ? disabled : loading ? (isLoading.button ? "disabled" : "") : ""}
       type={type}
       onClick={onClick}
-      className={`btn btn-${color} ${block === undefined ? "" : "btn-block"}`}
+      className={`btn btn-${color} ${block === undefined ? "" : "btn-block"} ${className ? className : ""}`}
     >
       {loading ? (
         isLoading.button ? (

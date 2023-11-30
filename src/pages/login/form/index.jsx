@@ -5,11 +5,11 @@ let FormLogin = (props) => {
   return (
     <form method="post" onSubmit={props.handleSubmit}>
       <Field
-        name="username"
+        name="email"
         component={ReanderField}
         iconFormGroup="fas fa-envelope"
         formGroup
-        placeholder="Silahkan Masukan Username"
+        placeholder="Silahkan Masukan Email"
       />
       <Field
         name="password"

@@ -37,6 +37,22 @@ export const calculateWindowSize = (windowWidth) => {
   return "xs";
 };
 
+export const converDate = (date) =>{
+  const newdate = new Date(date).toLocaleDateString("id-ID", {
+    timeZone: "Asia/Jakarta",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  // console.log(newdate)
+  
+  const [day, month, year] = newdate.split("/");
+  // console.log(day)
+  const today = `${year}-${month}-${day}`;
+
+  return today
+}
+
 export const LoadingApp = () => {
   return (
     <div className="preloader flex-column justify-content-center align-items-center">
@@ -96,7 +112,7 @@ export const HiiddenFiled = ({
     <input
       onKeyPress={(event) => {
         if (event.key === "Enter") {
-          event.preventDefault(); //<===== This stops the form from being submitted
+          event.preventDefault(); 
         } else {
         }
       }}

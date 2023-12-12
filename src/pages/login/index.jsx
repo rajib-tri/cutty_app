@@ -62,7 +62,7 @@ const Login = (props) => {
       <div className="card card-outline card-primary">
         <div className="card-header text-center">
           <div className="h1">
-            <b>LOGIN</b>CUTTY
+            <b>LOGIN</b>CUTI
           </div>
         </div>
         <div className="card-body">

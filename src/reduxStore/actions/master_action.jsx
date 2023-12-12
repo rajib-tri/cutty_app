@@ -3,6 +3,7 @@ import { ToastNotification } from 'components/helper';
 
 export const DATA_USER = 'DATA_USER';
 export const DATA_PENGAJUANCUTI = 'DATA_PENGAJUANCUTI';
+export const DATA_KARYAWAN = 'DATA_KARYAWAN'; 
 
 const getDataPengajuanCuti = () => {
   return async (dispatch) => {
@@ -52,18 +53,42 @@ const getDataUser = () => {
   };
 };
 
-const updatePengajuanCuti = (id, data) => {
-    return async (dispatch) => {
-      try {
-        await postData(`leave-permissions/${id}`, data);
-        ToastNotification('success', 'Data pengajuan cuti berhasil diubah');
-        dispatch(getDataPengajuanCuti());
-      } catch (error) {
-        console.error('Error updating pengajuan cuti data:', error);
-        ToastNotification('error', 'Error updating pengajuan cuti data');
-      }
-    };
+const getDataKaryawan = () => {
+  return async (dispatch) => {
+    try {
+      const result = await getData('karyawan'); 
+      dispatch({
+        type: DATA_KARYAWAN,
+        payload: {
+          data: result,
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching karyawan data:', error);
+      dispatch({
+        type: DATA_KARYAWAN,
+        payload: {
+          data: [],
+        },
+      });
+
+      ToastNotification('error', 'Error fetching karyawan data');
+    }
   };
+};
+
+const updatePengajuanCuti = (id, data) => {
+  return async (dispatch) => {
+    try {
+      await postData(`leave-permissions/${id}`, data);
+      ToastNotification('success', 'Data pengajuan cuti berhasil diubah');
+      dispatch(getDataPengajuanCuti());
+    } catch (error) {
+      console.error('Error updating pengajuan cuti data:', error);
+      ToastNotification('error', 'Error updating pengajuan cuti data');
+    }
+  };
+};
 
 const updateUser = (id, data) => {
   return async (dispatch) => {
@@ -109,6 +134,7 @@ const actionMaster = {
   getDataPengajuanCuti,
   updateUser,
   updatePengajuanCuti,
+  getDataKaryawan, 
 };
 
 export { actionMaster };

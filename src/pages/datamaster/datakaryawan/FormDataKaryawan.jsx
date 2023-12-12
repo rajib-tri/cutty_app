@@ -2,9 +2,9 @@ import { Button, Col, HiiddenFiled, ReanderField, ReanderSelect, Row } from "com
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
-let FormDataUser = (props) => {
+let FormDataKaryawan = (props) => {
   const { handleSubmit, isEdit } = props;
-  // const dispatch = useDispatch();
+ 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -28,16 +28,6 @@ let FormDataUser = (props) => {
            
           /> 
         </Col>
-
-        <Col size="6">
-          <Field
-            name="password"
-            component={ReanderField}
-            label="password"
-            placeholder="Please enter your password"
-           
-          /> 
-        </Col>
      
         <Col size="6">
           <Field
@@ -53,9 +43,9 @@ let FormDataUser = (props) => {
        
         <Col size="6">
           <Field
-            name="jabatan"
+            name="jabatan_id"
             component={ReanderSelect  }
-            label="Jabatan"
+            label="Jabatan_id"
             options={[
               {
                 value: "PROGRAMMER",
@@ -82,7 +72,7 @@ let FormDataUser = (props) => {
            
           />
         </Col>
-        {/* <Col size="6">
+        <Col size="6">
           <Field
             name="Kuota"
             component={ReanderField}
@@ -90,7 +80,7 @@ let FormDataUser = (props) => {
             placeholder="Please enter your Kuota"
            
           />
-        </Col> */}
+        </Col>
         <Col size="6">
           <Field
             name="level"
@@ -125,25 +115,24 @@ let FormDataUser = (props) => {
   );
 };
 
-FormDataUser = reduxForm({
-  form: "ModalFormDataUser",
+FormDataKaryawan = reduxForm({
+  form: "ModalFormDataKaryawan",
   enableReinitialize: true,
 //   validate,
-})(FormDataUser);
+})(FormDataKaryawan);
 
 export default connect((state) => {
   if (state?.utility?.modalShow?.isEdit === true) {
     return {
       isEdit: state?.utility?.modalShow?.isEdit,
       initialValues: {
-        // email: state?.utility?.modalShow?.data?.email,
-        password: state?.utility?.modalShow?.data?.password,
+        email: state?.utility?.modalShow?.data?.email,
         // Omit password from initialValues if editing
         nama_lengkap: state?.utility?.modalShow?.data?.nama_lengkap,
         no_telepon: state?.utility?.modalShow?.data?.no_telepon,
-        jabatan: {
-          value : state?.utility?.modalShow?.data?.jabatan,
-          label : state?.utility?.modalShow?.data?.jabatan,
+        role_id: {
+          value : state?.utility?.modalShow?.data?.role_id,
+          label : state?.utility?.modalShow?.data?.role_id
         },
         level: {
           value : state?.utility?.modalShow?.data?.level,
@@ -157,4 +146,4 @@ export default connect((state) => {
       isEdit: false,
     };
   }
-})(FormDataUser);
+})(FormDataKaryawan);

@@ -21,7 +21,12 @@ const menu = [
       },
       {
         path: "/data-pengajuan-cuti",
-        title: "Data pengajuan cuti",
+        title: "Data pengajuan-cuti",
+        is_show: false,
+      },
+      {
+        path: "/data-karyawan",
+        title: "Data karyawan",
         is_show: false,
       },
     

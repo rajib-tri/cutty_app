@@ -4,7 +4,7 @@ import TabelPengajuanCuti from './tabelpengajuancuti'
 import FormDataPengajuanCuti from './FormDataPengajuanCuti'
 import { actionMaster, utilityAction } from 'reduxStore'
 import { ToastNotification, getItem } from 'components/helper'
-import { reset } from 'redux-form'
+
 
 function Datapengajuancuti() {
     const dispatch = useDispatch()
@@ -12,14 +12,15 @@ function Datapengajuancuti() {
 
     const simpanData = async (data) => {
         try {
+
             if(data.id !== undefined){
                 await putData("leave-permissions/"+data.id,{
                     status : data.status?.value,
-                    approved_by : getItem("userdata")?.user?.nama_lengkap
+                    approved_by : getItem("datauser")?.user?.nama_lengkap
                 })
             }else{
                 await postData('leave-permissions', {
-                    _id: data._id,
+                   
                     password: data.password,
                     tanggal_mulai: data.tanggal_mulai,
                     tanggal_akhir: data.tanggal_akhir,
@@ -30,7 +31,7 @@ function Datapengajuancuti() {
             }
 
             dispatch(utilityAction.modalHide());
-            dispatch(reset("ModalFormDataPengajuanCuti"));
+           
             dispatch(actionMaster.getDataPengajuanCuti());
         } catch (error) {
             console.log(error?.response);

@@ -4,22 +4,34 @@ import { Button, Col, HiiddenFiled, ReanderField, ReanderSelect, Row, converDate
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
+
 let FormDataPengajuanCuti = (props) => {
   const { handleSubmit, isEdit } = props;
+ 
 
   return (
     <form onSubmit={handleSubmit}>
       <Row>
-        {isEdit &&
-          <>
-            <Field
-              name="id"
-              component={HiiddenFiled}
-              type="hidden"
-            />
-          </>
+        {isEdit && 
+        
+        <>
+           <Field
+            name="id"
+            component={HiiddenFiled}
+            type="hidden"
+          />
+        </>
         }
-
+          <Col size="6">
+          <Field
+            name="Nama Karyawan"
+            component={ReanderField}
+            label="Nama Karyawan"
+            placeholder="Please enter your Nama Karyawan"
+           readOnly={isEdit}
+          />
+        </Col>
+        
         <Col size="6">
           <Field
             name="tanggal_mulai"
@@ -45,7 +57,6 @@ let FormDataPengajuanCuti = (props) => {
             name="alasan"
             component={ReanderSelect}
             label="Alasan"
-            type="alasan"
             options={[
               {
                 value: "CUTI LIBURAN",
@@ -55,7 +66,8 @@ let FormDataPengajuanCuti = (props) => {
             placeholder="Silahkan Masukan alasan"
             disabled={isEdit}
           />
-        </Col>
+        </Col>  
+      
         <Col size="6">
           <Field
             name="tanggal_permohonan"
@@ -69,7 +81,7 @@ let FormDataPengajuanCuti = (props) => {
        
   
           <Col size="6 mt-4">
-            <Button title={isEdit ? "Edit" : "Simpan"} color="primary" block />
+            <Button title={isEdit ? "Edit" : "Save"} color="primary" block />
           </Col>
       </Row>
     </form>
@@ -89,7 +101,7 @@ export default connect((state) => {
           isEdit: state?.utility?.modalShow?.isEdit,
           initialValues: {
            
-            no_telpon: state?.utility?.modalShow?.data?.no_telpon,
+           
             tanggal_mulai: converDate(state?.utility?.modalShow?.data?.tanggal_mulai),
             tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
             alasan: {

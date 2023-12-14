@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, TabelMaster, Row, Col, useDispatch, useSelector } from "components";
-import { actionMaster, selectorMaster, utilityAction } from "reduxStore";
+import { actionMaster, selectorMaster, } from "reduxStore";
 
 const Tabelpengajuancuti = () => {
   const dispatch = useDispatch();
@@ -10,18 +10,9 @@ const Tabelpengajuancuti = () => {
     dispatch(actionMaster.getDataPengajuanCuti());
   }, [dispatch]);
 
-  const handleEdit = (row) => {
-    dispatch(
-      utilityAction.modalShow({
-        isModalShow: true,
-        isEdit: true,
-        data: row,
-      })
-    );
-  };
-
   const handleDelete = (row) => {
-    dispatch(actionMaster.getDataPengajuanCuti());
+    console.log("Menghapus data:", row);
+    dispatch(actionMaster.getDataPengajuanCuti(row._id));
   };
 
   const columns = [
@@ -38,13 +29,6 @@ const Tabelpengajuancuti = () => {
       render: (cell, row) => (
         <Row className={`text-center`}>
           <Col size="12" className="mr-3 text-center">
-            <Button
-              type="button"
-              color="info"
-              icon="fa-edit"
-              onClick={() => handleEdit(row)}
-            />
-            &nbsp;
             <Button
               type="button"
               color="danger"

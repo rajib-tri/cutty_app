@@ -108,15 +108,7 @@ let FormDataUser = (props) => {
            
           />
         </Col>
-        {/* <Col size="6">
-          <Field
-            name="Kuota"
-            component={ReanderField}
-            label="Kuota"
-            placeholder="Please enter your Kuota"
-           
-          />
-        </Col> */}
+       
         <Col size="6">
           <Field
             name="level"

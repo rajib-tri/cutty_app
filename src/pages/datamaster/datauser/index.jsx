@@ -31,7 +31,6 @@ function Datauser() {
                     jabatan: data.jabatan.value,
                     level: data.level.value,
                     kuota: 12,
-                    // kuota: data.kuota,
                 });
             }
 

@@ -20,15 +20,11 @@ const menu = [
         is_show: false,
       },
       {
-        path: "/data-pengajuan-cuti",
-        title: "Data pengajuan-cuti",
+        path: "/data-pengajuan-cuti",   
+        title: "Data Pengajuan Cuti",
         is_show: false,
       },
-      {
-        path: "/data-karyawan",
-        title: "Data karyawan",
-        is_show: false,
-      },
+
     
     ]
   },

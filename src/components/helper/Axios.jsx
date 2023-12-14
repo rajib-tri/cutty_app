@@ -58,6 +58,25 @@ export async function putData(endpoint, data) {
   });
 }
 
+export async function updateData(endpoint, data) {
+  const url = `${process.env.REACT_APP_BE}/${endpoint}`;
+  const config = {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${getItem("userdata")?.access_token}`,
+    },
+  };
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result = await Axios.put(url, data, config);
+      resolve(result.data);
+    } catch (error) {
+      console.error(error);
+      reject(error);
+    }
+  });
+}
+
 export async function deletData(endpoint, data = {}) {
   const url = `${process.env.REACT_APP_BE}/${endpoint}`;
   const config = {

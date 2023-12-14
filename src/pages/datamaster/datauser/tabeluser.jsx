@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, TabelMaster, Row, Col, useDispatch, useSelector, deletData } from "components";
-import { ToastNotification } from "components/helper";
-import { actionMaster, selectorMaster } from "reduxStore";
+import { Button, TabelMaster, Row, Col, useDispatch, useSelector } from "components";
+import { actionMaster, selectorMaster, utilityAction } from "reduxStore";
 
 const TabelUser = () => {
   const dispatch = useDispatch();
@@ -11,25 +10,22 @@ const TabelUser = () => {
     dispatch(actionMaster.getDataUser());
   }, [dispatch]);
 
-  const handleDelete = async (data) => {
-    try {
-      await deletData('users/' + data.nama_lengkap, {
-      });
-      dispatch(actionMaster.getDataUser());
-      ToastNotification('info', 'Data Berhasil Dihapus');
-    } catch (error) {
-      console.log(error);
-      ToastNotification('info', 'Data Gagal Dihapus');
-    }
-    setSelectedRowKeys([]);
+  const handleEdit = (row) => {
+    dispatch(
+      utilityAction.modalShow({
+        isModalShow: true,
+        isEdit: true,
+        data: row,
+      })
+    );
   };
 
-  const onSelectChange = (selectedKeys) => {
-    setSelectedRowKeys(selectedKeys);
+  const handleDelete = (row) => {
+  
+    console.log("Menghapus data:", row);
   };
 
   const columns = [
-
     {
       title: "nama_lengkap",
       dataIndex: "nama_lengkap",
@@ -45,11 +41,6 @@ const TabelUser = () => {
       dataIndex: "jabatan",
       key: "jabatan",
     },
-    // {
-    //   title: "kuota",
-    //   dataIndex: "kuota",
-    //   key: "kuota",
-    // },
     {
       title: "Level",
       dataIndex: "level",
@@ -65,26 +56,29 @@ const TabelUser = () => {
           <Col size="12" className="mr-3 text-center">
             <Button
               type="button"
+              color="info"
+              icon="fa-edit"
+              onClick={() => handleEdit(row)}
+            />
+            &nbsp;
+            <Button
+              type="button"
               color="danger"
               icon="fa-trash"
               onClick={() => handleDelete(row)}
-
-            // disabled={getItem("datauser").user.email === row.email ? true : false}
             />
-            &nbsp;
-            {/* <Button type="button" color="info" icon="fa-edit" onClick={() => handleEdit(row)} /> */}
           </Col>
         </Row>
       ),
     },
   ];
 
+  const DataUser = useSelector(selectorMaster.getDataUser);
+
   const rowSelection = {
     selectedRowKeys,
-    onChange: onSelectChange,
+    onChange: (selectedKeys) => setSelectedRowKeys(selectedKeys),
   };
-
-  const DataUser = useSelector(selectorMaster.getDataUser);
 
   return (
     <>
@@ -100,7 +94,3 @@ const TabelUser = () => {
 };
 
 export default TabelUser;
-
-
-
-

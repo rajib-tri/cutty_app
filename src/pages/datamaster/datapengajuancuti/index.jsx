@@ -13,33 +13,32 @@ function Datapengajuancuti() {
     const simpanData = async (data) => {
         try {
 
-            if(data.id !== undefined){
-                await putData("leave-permissions/"+data.id,{
-                    status : data.status?.value,
-                    approved_by : getItem("datauser")?.user?.nama_lengkap
+            if (data.id !== undefined) {
+                await putData("leave-permissions/" + data.id, {
+                    status: data.status?.value,
+                    approved_by: getItem("datauser")?.user?.nama_lengkap
                 })
-            }else{
+            } else {
                 await postData('leave-permissions', {
-                   
-                    password: data.password,
+                    nama_lengkap: data.nama_karyawan,
                     tanggal_mulai: data.tanggal_mulai,
                     tanggal_akhir: data.tanggal_akhir,
                     alasan: data.alasan.value,
                     tanggal_permohonan: data.tanggal_permohonan,
-                   
+
                 });
             }
 
             dispatch(utilityAction.modalHide());
-           
+
             dispatch(actionMaster.getDataPengajuanCuti());
         } catch (error) {
             console.log(error?.response);
             ToastNotification('info', error?.response?.data?.message || "Terjadi Kesalahan Saat Mengirim Data");
         }
-    // }
+        // }
 
-};
+    };
 
     return (
         <PanelContent title="Data Pengajuan Cuti" headerContent>

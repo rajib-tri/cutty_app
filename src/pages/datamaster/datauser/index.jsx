@@ -11,14 +11,15 @@ function Datauser() {
     const simpanData = async (data) => {
       
             try {
-                await postData('auth/register', {
-                    // _id: data._id,
-                    // email: data.email,
+                await postData('user', {
+                    user_id: data.user_id,
+                    email: data.email,
                     nama_lengkap:data.nama_lengkap,
                     password: data.password,
                     no_telepon: data.no_telepon,
                     jabatan: data.jabatan.value,
                     level: data.level.value,
+                    kuota: 12,
                     // kuota: data.kuota,
                 });
 

@@ -1,8 +1,9 @@
 
 import React from "react";
-import { Button, Col, HiiddenFiled, ReanderField, ReanderSelect, Row, converDate } from "components";
+import { Button, Col, HiiddenFiled, ReanderField, Row, converDate } from "components";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import TextArea from "antd/lib/input/TextArea";
 
 
 let FormDataPengajuanCuti = (props) => {
@@ -22,21 +23,23 @@ let FormDataPengajuanCuti = (props) => {
           />
         </>
         }
-          <Col size="6">
+          <Col size="12">
           <Field
-            name="Nama Karyawan"
+            name="nama_karyawan"
             component={ReanderField}
             label="Nama Karyawan"
             placeholder="Please enter your Nama Karyawan"
            readOnly={isEdit}
           />
         </Col>
-        
+
+
         <Col size="6">
           <Field
             name="tanggal_mulai"
+
             component={ReanderField}
-            label="Tanggal_mulai"
+            label="Tanggal Mulai"
             type="date"
             placeholder="Silahkan Masukan tanggal_mulai"
             readOnly={isEdit}
@@ -46,29 +49,24 @@ let FormDataPengajuanCuti = (props) => {
           <Field
             name="tanggal_akhir"
             component={ReanderField}
-            label="Tanggal_akhir"
+            label="Tanggal Akhir"
             type="date"
             placeholder="Silahkan Masukan tanggal_akhir"
             readOnly={isEdit}
           />
         </Col>
-        <Col size="6">
-          <Field
+        
+        <Col size="12">
+          <TextArea
             name="alasan"
-            component={ReanderSelect}
+            component={ReanderField}
             label="Alasan"
-            options={[
-              {
-                value: "CUTI LIBURAN",
-                label: "CUTI LIBURAN",
-              },
-            ]}
-            placeholder="Silahkan Masukan alasan"
-            disabled={isEdit}
+            placeholder="Please enter your Alasan"
+            readOnly={isEdit}
           />
-        </Col>  
-      
-        <Col size="6">
+        </Col>
+
+        <Col size="12">
           <Field
             name="tanggal_permohonan"
             component={ReanderField}

@@ -21,6 +21,15 @@ let FormDataUser = (props) => {
         }
         <Col size="6">
           <Field
+            name="user_id"
+            component={ReanderField}
+            label="User Id"
+            placeholder="Please enter your user id"
+           readOnly={isEdit}
+          />
+        </Col>
+        <Col size="6">
+          <Field
             name="nama_lengkap"
             component={ReanderField}
             label="Nama Lengkap"
@@ -29,11 +38,23 @@ let FormDataUser = (props) => {
           /> 
         </Col>
 
+
+        <Col size="6">
+          <Field
+            name="email"
+            component={ReanderField}
+            label="email"
+            placeholder="Please enter your email"
+           readOnly={isEdit}
+          />
+        </Col>
+
         <Col size="6">
           <Field
             name="password"
             component={ReanderField}
             label="password"
+            type="password"
             placeholder="Please enter your password"
            
           /> 
@@ -99,12 +120,12 @@ let FormDataUser = (props) => {
             type="level"
             options={[
               {
-                value: "admin",
-                label: "Admin",
+                value: "ADMIN",
+                label: "ADMIN",
               },
               {
-                value: "user",
-                label: "User",
+                value: "USER",
+                label: "USER",
               },
             ]}
             placeholder="Please select your level"

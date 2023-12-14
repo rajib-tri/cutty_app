@@ -32,7 +32,7 @@ const getDataPengajuanCuti = () => {
 const getDataUser = () => {
   return async (dispatch) => {
     try {
-      const result = await getData('users');
+      const result = await getData('user');
       dispatch({
         type: DATA_USER,
         payload: {

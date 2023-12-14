@@ -1,12 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, TabelMaster, Row, Col, useDispatch, useSelector } from "components";
-import { actionMaster, selectorMaster, utilityAction } from "reduxStore"; 
+import { actionMaster, selectorMaster, utilityAction } from "reduxStore";
+
 const Tabelpengajuancuti = () => {
   const dispatch = useDispatch();
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   useEffect(() => {
     dispatch(actionMaster.getDataPengajuanCuti());
   }, [dispatch]);
+
+  const handleEdit = (row) => {
+    dispatch(
+      utilityAction.modalShow({
+        isModalShow: true,
+        isEdit: true,
+        data: row,
+      })
+    );
+  };
+
+  const handleDelete = (row) => {
+  
+    console.log("Menghapus data:", row);
+  };
 
   const columns = [
     { title: "Tanggal_permohonan", dataIndex: "tanggal_permohonan", key: "tanggal_permohonan" },
@@ -14,42 +31,49 @@ const Tabelpengajuancuti = () => {
     { title: "Tanggal_mulai", dataIndex: "tanggal_mulai", key: "tanggal_mulai" },
     { title: "Tanggal_akhir", dataIndex: "tanggal_akhir", key: "tanggal_akhir" },
     { title: "Alasan", dataIndex: "alasan", key: "alasan" },
-  
     {
       title: "Action",
       dataIndex: "action",
       key: "action",
       align: "center",
-      render: (cell, row) => {
-        return (
-          <Row className={`text-center`}>
-            <Col size="12" className="mr-3 text-center">
-              <Button
-                type="button"
-                color="info"
-                icon="fa-edit"
-                onClick={() =>
-                  dispatch(
-                    utilityAction.modalShow({
-                      isModalShow: true,
-                      isEdit: true,
-                      data: row
-                    })
-                  )
-                }
-              />
-            </Col>
-          </Row>
-        );
-      },
+      render: (cell, row) => (
+        <Row className={`text-center`}>
+          <Col size="12" className="mr-3 text-center">
+            <Button
+              type="button"
+              color="info"
+              icon="fa-edit"
+              onClick={() => handleEdit(row)}
+            />
+            &nbsp;
+            <Button
+              type="button"
+              color="danger"
+              icon="fa-trash"
+              onClick={() => handleDelete(row)}
+            />
+          </Col>
+        </Row>
+      ),
     },
   ];
 
-  const Datapengajuancuti = useSelector(selectorMaster.getDataPengajuanCuti);
+  const DataUser = useSelector(selectorMaster.getDataPengajuanCuti);
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: (selectedKeys) => setSelectedRowKeys(selectedKeys),
+  };
 
   return (
     <>
-      <TabelMaster rowKey={"_id"} createData={true} columns={columns} dataSource={Datapengajuancuti || []} />
+      <TabelMaster
+        rowKey={"_id"}
+        createData={true}
+        columns={columns}
+        dataSource={DataUser || []}
+        rowSelection={rowSelection}
+      />
     </>
   );
 };

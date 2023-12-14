@@ -1,4 +1,4 @@
-import { deletData, getData, postData } from 'components';
+import { deletData, getData, postData, putData } from 'components';
 import { ToastNotification } from 'components/helper';
 
 export const DATA_USER = 'DATA_USER';
@@ -93,7 +93,7 @@ const updatePengajuanCuti = (id, data) => {
 const updateUser = (id, data) => {
   return async (dispatch) => {
     try {
-      await postData(`users/${id}`, data);
+      await putData(`user/${id}`, data);
       ToastNotification('success', 'Data berhasil diubah');
       dispatch(getDataUser());
     } catch (error) {
@@ -106,7 +106,7 @@ const updateUser = (id, data) => {
 const deleteUser = (id) => {
   return async (dispatch) => {
     try {
-      await deletData(`users/${id}`);
+      await deletData(`user/${id}`);
       ToastNotification('success', 'Data berhasil dihapus');
       dispatch(getDataUser());
     } catch (error) {

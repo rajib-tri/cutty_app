@@ -21,8 +21,7 @@ const Tabelpengajuancuti = () => {
   };
 
   const handleDelete = (row) => {
-  
-    console.log("Menghapus data:", row);
+    dispatch(actionMaster.getDataPengajuanCuti());
   };
 
   const columns = [

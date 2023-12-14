@@ -22,10 +22,13 @@ let FormDataUser = (props) => {
         <Col size="6">
           <Field
             name="user_id"
+            readOnly={
+              isEdit ? true : false
+            }
             component={ReanderField}
             label="User Id"
             placeholder="Please enter your user id"
-           readOnly={isEdit}
+           
           />
         </Col>
         <Col size="6">
@@ -45,10 +48,11 @@ let FormDataUser = (props) => {
             component={ReanderField}
             label="email"
             placeholder="Please enter your email"
-           readOnly={isEdit}
+          
           />
         </Col>
 
+        {!isEdit &&
         <Col size="6">
           <Field
             name="password"
@@ -56,9 +60,10 @@ let FormDataUser = (props) => {
             label="password"
             type="password"
             placeholder="Please enter your password"
-           
-          /> 
+            
+            /> 
         </Col>
+          }
      
         <Col size="6">
           <Field
@@ -154,13 +159,15 @@ FormDataUser = reduxForm({
 
 export default connect((state) => {
   if (state?.utility?.modalShow?.isEdit === true) {
+    console.log(state?.utility?.modalShow)
     return {
       isEdit: state?.utility?.modalShow?.isEdit,
       initialValues: {
-        // email: state?.utility?.modalShow?.data?.email,
+        email: state?.utility?.modalShow?.data?.email,
         password: state?.utility?.modalShow?.data?.password,
         // Omit password from initialValues if editing
         nama_lengkap: state?.utility?.modalShow?.data?.nama_lengkap,
+        user_id: state?.utility?.modalShow?.data?.user_id,
         no_telepon: state?.utility?.modalShow?.data?.no_telepon,
         jabatan: {
           value : state?.utility?.modalShow?.data?.jabatan,

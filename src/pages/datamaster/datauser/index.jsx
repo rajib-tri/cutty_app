@@ -1,4 +1,4 @@
-import { Card, ModalGlobal, PanelContent, postData,  useDispatch } from 'components'
+import { Card, ModalGlobal, PanelContent, postData,  putData,  useDispatch } from 'components'
 import React from 'react'
 import TabelUser from './tabeluser'
 import FormDataUser from './FormDataUser'
@@ -9,8 +9,19 @@ function Datauser() {
     const dispatch = useDispatch()
 
     const simpanData = async (data) => {
-      
-            try {
+        try {
+            if(data.id !== undefined){
+                const _id = data.id
+                await putData(`user/${_id}`, {
+                    email: data.email,
+                    nama_lengkap:data.nama_lengkap,
+                    password: data.password,
+                    no_telepon: data.no_telepon,
+                    jabatan: data.jabatan.value,
+                    level: data.level.value,
+                    kuota: 12,
+                })
+            }else{
                 await postData('user', {
                     user_id: data.user_id,
                     email: data.email,
@@ -22,13 +33,14 @@ function Datauser() {
                     kuota: 12,
                     // kuota: data.kuota,
                 });
-
-                dispatch(utilityAction.modalHide());
-                dispatch(actionMaster.getDataUser());
-            } catch (error) {
-                console.log(error);
-                ToastNotification('info', 'Password Atau Username Salah');
             }
+
+            dispatch(utilityAction.modalHide());
+            dispatch(actionMaster.getDataUser());
+        } catch (error) {
+            console.log(error);
+            ToastNotification('info', 'Password Atau Username Salah');
+        }
 
     };
 

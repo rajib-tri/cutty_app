@@ -12,7 +12,7 @@ const Tabelpengajuancuti = () => {
 
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
-    dispatch(actionMaster.deletData(row._id));
+    dispatch(actionMaster.deletepengajuancuti(row._id));
   };
 
   const columns = [
@@ -29,6 +29,7 @@ const Tabelpengajuancuti = () => {
       render: (cell, row) => (
         <Row className={`text-center`}>
           <Col size="12" className="mr-3 text-center">
+          &nbsp;
             <Button
               type="button"
               color="danger"

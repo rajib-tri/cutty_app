@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { ReanderTextArea } from "components/helper";
 
+
 let FormDataPengajuanCuti = (props) => {
   const { handleSubmit, isEdit } = props;
  
@@ -78,13 +79,20 @@ let FormDataPengajuanCuti = (props) => {
         </Col>
        
   
-          <Col size="6 mt-4">
-            <Button title={isEdit ? "Edit" : "Save"} color="primary" block />
+        {isEdit ? (
+          <Col size="6">
+            <Button title="Edit" color="primary"block className="mt-4" />
           </Col>
+        ) : (
+          <Col size="6">
+            <Button title="Save" color="primary" block />
+          </Col>
+        )}
       </Row>
     </form>
   );
 };
+
 
 
 FormDataPengajuanCuti = reduxForm({

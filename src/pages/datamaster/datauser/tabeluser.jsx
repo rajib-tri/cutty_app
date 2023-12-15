@@ -7,6 +7,7 @@ const TabelUser = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   useEffect(() => {
+
     dispatch(actionMaster.getDataUser());
   }, [dispatch]);
 

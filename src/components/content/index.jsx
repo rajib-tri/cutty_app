@@ -11,10 +11,10 @@ const Content = (props) => {
     var pageTitle;
     for (var i = 0; i < routeArray.length; i++) {
       if (routeArray[i].path === path) {
-        pageTitle = "Admin Lte | " + routeArray[i].title;
+        pageTitle = "CUTI APP | " + routeArray[i].title;
       }
     }
-    document.title = pageTitle ? pageTitle : "Admin Lte | React App";
+    document.title = pageTitle ? pageTitle : "CUTI APP";
   };
   useEffect(() => {
     setTitle(props.history.location.pathname, MenuRoutes);

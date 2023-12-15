@@ -10,8 +10,6 @@ const TabelUser = () => {
     dispatch(actionMaster.getDataUser());
   }, [dispatch]);
 
-  
-
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
     dispatch(actionMaster.deleteUser(row._id))

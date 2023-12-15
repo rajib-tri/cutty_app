@@ -3,8 +3,7 @@ import React from "react";
 import { Button, Col, HiiddenFiled, ReanderField, Row, converDate } from "components";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import TextArea from "antd/lib/input/TextArea";
-
+import { ReanderTextArea } from "components/helper";
 
 let FormDataPengajuanCuti = (props) => {
   const { handleSubmit, isEdit } = props;
@@ -57,11 +56,12 @@ let FormDataPengajuanCuti = (props) => {
         </Col>
         
         <Col size="12">
-          <TextArea
-            name="alasan"
-            component={ReanderField}
+        <Field
+            name="alsan"
+            component={ReanderTextArea}
             label="Alasan"
-            placeholder="Please enter your Alasan"
+            type="date"
+            placeholder="Silahkan Masukan Alasan"
             readOnly={isEdit}
           />
         </Col>
@@ -98,8 +98,6 @@ export default connect((state) => {
         return {
           isEdit: state?.utility?.modalShow?.isEdit,
           initialValues: {
-           
-           
             tanggal_mulai: converDate(state?.utility?.modalShow?.data?.tanggal_mulai),
             tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
             alasan: {

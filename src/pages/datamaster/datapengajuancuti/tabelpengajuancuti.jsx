@@ -12,15 +12,15 @@ const Tabelpengajuancuti = () => {
 
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
-    dispatch(actionMaster.getDataPengajuanCuti(row._id));
+    dispatch(actionMaster.deletData(row._id));
   };
 
   const columns = [
-    { title: "Tanggal_permohonan", dataIndex: "tanggal_permohonan", key: "tanggal_permohonan" },
-    { title: "Nama Karyawan", dataIndex: "nama_lengkap", key: "nama_lengkap" },
-    { title: "Tanggal_mulai", dataIndex: "tanggal_mulai", key: "tanggal_mulai" },
-    { title: "Tanggal_akhir", dataIndex: "tanggal_akhir", key: "tanggal_akhir" },
+    { title: "Nama Karyawan", dataIndex: "nama_karyawan", key: "nama_karyawan" },
+    { title: "Tanggal Mulai", dataIndex: "tanggal_mulai", key: "tanggal_mulai" },
+    { title: "Tanggal Akhir", dataIndex: "tanggal_akhir", key: "tanggal_akhir" },
     { title: "Alasan", dataIndex: "alasan", key: "alasan" },
+    { title: "Tanggal Permohonan", dataIndex: "tanggal_permohonan", key: "tanggal_permohonan" },
     {
       title: "Action",
       dataIndex: "action",

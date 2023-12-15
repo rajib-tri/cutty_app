@@ -12,13 +12,13 @@ function Datapengajuancuti() {
         try {
             if(data.id !== undefined){
             } else {
+                console.log(data)
                 await postData('leave-permissions', {
                     nama_lengkap: data.nama_karyawan,
                     tanggal_mulai: data.tanggal_mulai,
                     tanggal_akhir: data.tanggal_akhir,
                     alasan: data.alasan.value,
                     tanggal_permohonan: data.tanggal_permohonan,
-
                 });
             
             }

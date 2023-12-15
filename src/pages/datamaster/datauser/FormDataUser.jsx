@@ -157,7 +157,6 @@ export default connect((state) => {
       initialValues: {
         email: state?.utility?.modalShow?.data?.email,
         password: state?.utility?.modalShow?.data?.password,
-        // Omit password from initialValues if editing
         nama_lengkap: state?.utility?.modalShow?.data?.nama_lengkap,
         user_id: state?.utility?.modalShow?.data?.user_id,
         no_telepon: state?.utility?.modalShow?.data?.no_telepon,

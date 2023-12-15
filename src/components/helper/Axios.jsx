@@ -22,6 +22,7 @@ export async function getData(endpoint, params = {}) {
 
 export async function postData(endpoint, data) {
   const url = `${process.env.REACT_APP_BE}/${endpoint}`;
+  console.log(url)
   const config = {
     headers: {
       Accept: "application/json",

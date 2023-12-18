@@ -21,6 +21,7 @@ const Tabelpengajuancuti = () => {
     { title: "Tanggal Akhir", dataIndex: "tanggal_akhir", key: "tanggal_akhir" },
     { title: "Alasan", dataIndex: "alasan", key: "alasan" },
     { title: "Tanggal Permohonan", dataIndex: "tanggal_permohonan", key: "tanggal_permohonan" },
+    { title: "Status", dataIndex: "status", key: "status" },
     {
       title: "Action",
       dataIndex: "action",

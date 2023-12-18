@@ -30,6 +30,7 @@ function Datauser() {
                     no_telepon: data.no_telepon,
                     jabatan: data.jabatan.value,
                     level: data.level.value,
+                    
                     kuota: 12,
                 });
             }

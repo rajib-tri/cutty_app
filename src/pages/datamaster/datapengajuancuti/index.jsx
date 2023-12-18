@@ -20,6 +20,7 @@ function Datapengajuancuti() {
                     tanggal_akhir: data.tanggal_akhir,
                     alasan: data.alasan,
                     tanggal_permohonan: data.tanggal_permohonan,
+                    status: data.status.value,
                 });
             
             }

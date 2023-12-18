@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Button, Col, HiiddenFiled, ReanderField, Row, converDate } from "components";
+import { Button, Col, HiiddenFiled, ReanderField, ReanderSelect, Row, converDate } from "components";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { ReanderTextArea } from "components/helper";
@@ -76,6 +76,33 @@ let FormDataPengajuanCuti = (props) => {
             readOnly={isEdit}
           />
         </Col>
+        <Col size="12">
+          <Field
+            name="status"
+            component={ReanderSelect}
+            label="Status"
+            type="status"
+            options={[
+              {
+                value: "OPEN",
+                label: "OPEN",
+              },
+              {
+                value: "PROCESS",
+                label: "PROCESS",
+              },
+              {
+                value: "APPROVE",
+                label: "APPROVE",
+              },
+              {
+                value: "REJECT",
+                label: "REJECT",
+              },
+            ]}
+            placeholder="Please select your status"
+          />
+        </Col>
        
   
         {isEdit ? (
@@ -110,6 +137,10 @@ export default connect((state) => {
         tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
         alasan: state?.utility?.modalShow?.data?.alasan,
         tanggal_permohonan: converDate(state?.utility?.modalShow?.data?.tanggal_permohonan),
+        status: {
+          value : state?.utility?.modalShow?.data?.status,
+          label : state?.utility?.modalShow?.data?.status
+        },
         id: state?.utility?.modalShow?.data?._id,
       },
     };

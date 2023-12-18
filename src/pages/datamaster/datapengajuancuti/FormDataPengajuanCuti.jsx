@@ -100,21 +100,27 @@ FormDataPengajuanCuti = reduxForm({
     // validate,
 })(FormDataPengajuanCuti);
   
+
 export default connect((state) => {
-    if (state?.utility?.modalShow?.isEdit === true) {
-        return {
-          isEdit: state?.utility?.modalShow?.isEdit,
-          initialValues: {
-            tanggal_mulai: converDate(state?.utility?.modalShow?.data?.tanggal_mulai),
-            tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
-            alasan: state?.utility?.modalShow?.data?.alasan,
-            tanggal_permohonan: converDate(state?.utility?.modalShow?.data?.tanggal_permohonan),
-            id: state?.utility?.modalShow?.data?._id,
-          },
-        };
-      } else {
-        return {
-          isEdit: false,
-        };
-      }      
+  if (state?.utility?.modalShow?.isEdit === true) {
+    return {
+      isEdit: state?.utility?.modalShow?.isEdit,
+      initialValues: {
+        tanggal_mulai: converDate(state?.utility?.modalShow?.data?.tanggal_mulai),
+        tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
+        alasan: state?.utility?.modalShow?.data?.alasan,
+        tanggal_permohonan: converDate(state?.utility?.modalShow?.data?.tanggal_permohonan),
+        id: state?.utility?.modalShow?.data?._id,
+      },
+    };
+  } else {
+    return {
+      isEdit: false,
+      initialValues: {
+        tanggal_mulai: converDate(new Date()), 
+        tanggal_akhir: converDate(new Date()),
+        tanggal_permohonan: converDate(new Date()),
+      },
+    };
+  }
 })(FormDataPengajuanCuti);

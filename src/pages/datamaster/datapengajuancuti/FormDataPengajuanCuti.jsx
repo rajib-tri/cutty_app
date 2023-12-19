@@ -2,13 +2,19 @@
 import React from "react";
 import { Button, Col, HiiddenFiled, ReanderField, ReanderSelect, Row, converDate } from "components";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm,  } from "redux-form";
 import { ReanderTextArea } from "components/helper";
 
+// Function to check if the date range is valid
+const isValidDateRange = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const differenceInDays = (end - start) / (1000 * 60 * 60 * 24);
+  return differenceInDays <= 7;
+};
 
 let FormDataPengajuanCuti = (props) => {
   const { handleSubmit, isEdit } = props;
- 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -120,11 +126,18 @@ let FormDataPengajuanCuti = (props) => {
 };
 
 
-
 FormDataPengajuanCuti = reduxForm({
-    form: "ModalFormDataPengajuanCuti",
-    enableReinitialize: true,
-    // validate,
+  form: "ModalFormDataPengajuanCuti",
+  enableReinitialize: true,
+  validate: (values) => {
+    const errors = {};
+    if (values.tanggal_mulai && values.tanggal_akhir) {
+      if (!isValidDateRange(values.tanggal_mulai, values.tanggal_akhir)) {
+        errors.tanggal_akhir = "Tanggal Akhir harus dalam rentang 7 hari setelah Tanggal Mulai";
+      }
+    }
+    return errors;
+  },
 })(FormDataPengajuanCuti);
   
 

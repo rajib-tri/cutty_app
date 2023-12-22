@@ -30,7 +30,6 @@ function Datauser() {
                     no_telepon: data.no_telepon,
                     jabatan: data.jabatan.value,
                     level: data.level.value,
-                    
                     kuota: 12,
                 });
             }
@@ -39,7 +38,7 @@ function Datauser() {
             dispatch(actionMaster.getDataUser());
         } catch (error) {
             console.log(error);
-            ToastNotification('info', 'Password Atau Username Salah');
+            ToastNotification('info', 'Terdapat Kesalahan Server');
         }
 
     };

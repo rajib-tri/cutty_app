@@ -14,6 +14,7 @@ import {
   removeWindowClass,
   useDispatch
 } from "components";
+import { getItem } from "components/helper";
 import { selectorThemes, selectorUtility, utilityAction } from "reduxStore";
 const App = () => {
   const windowSize = useWindowSize();
@@ -53,12 +54,20 @@ const App = () => {
     dispatch(utilityAction.toggleSidebarMenu(!menuSidebarCollapsed));
   };
 
+  // console.log(getItem("userdata"))
   return (
     <div className="wrapper">
-      {header && <Header />}
-      {sidebar && <Sidebar />}
-      {content && <Content />}
-      {footer && <Footer />}
+
+      {getItem("datauser").length === 0 ?
+        <Content />
+        :
+        <>
+          {header && <Header />}
+          {sidebar && <Sidebar />}
+          {content && <Content />}
+          {footer && <Footer />}
+        </>
+      }
       <LoadingBar color={"red"} progress={progress} />
       {loading.content && <LoadingContent />}
       <div

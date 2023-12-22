@@ -26,7 +26,7 @@ const Login = (props) => {
   const handleSubmit = async (data) => {
     // console.log(data);
     try {
-      let response = await postData("auth/login", {
+      let response = await postData("user/login", {
         email : data.email,
         password : data.password,
       })

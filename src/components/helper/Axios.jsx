@@ -1,4 +1,4 @@
-import Axios from "axios";
+  import Axios from "axios";
 import { getItem } from ".";
 
 export async function getData(endpoint, params = {}) {

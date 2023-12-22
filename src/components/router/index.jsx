@@ -1,5 +1,6 @@
-import { Dashboard,  Datauser, Login,  } from "pages";
+import { Dashboard, Datauser, Login, } from "pages";
 import Datapengajuancuti from "pages/datamaster/datapengajuancuti";
+import { ProtectedRoute } from "./ProtectedRouter";
 
 const MenuRoutes = [
   {
@@ -12,7 +13,9 @@ const MenuRoutes = [
     path: "/dashboard",
     exact: true,
     title: "Dashboard",
-    component: () => <Dashboard />
+    component: () => <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
   },
 
 
@@ -20,22 +23,21 @@ const MenuRoutes = [
     path: "/data-user",
     exact: true,
     title: "Form Control",
-    component: () => <Datauser />
+    component: () => <ProtectedRoute>
+    <Datauser />
+    </ProtectedRoute>
   },
   {
     path: "/data-pengajuan-cuti",
     exact: true,
     title: "Form Control",
-    component: () => <Datapengajuancuti/>
+    component: () => <ProtectedRoute>
+     <Datapengajuancuti />
+     </ProtectedRoute>
   },
-  // {
-  //   path: "/data-karyawan",
-  //   exact: true,
-  //   title: "Form Control",
-  //   component: () => <DataKaryawan/>
-  // },
   
- 
+
+
 ];
 
 export default MenuRoutes;

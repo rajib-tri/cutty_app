@@ -46,7 +46,7 @@ const Header = () => {
           <div className="nav-item dropdown" onMouseEnter={toggleMenu}>
             <Link to="#" className="nav-link dropdown-toggle user-action">
               <img
-                src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg"
+                src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ADefault_pfp.svg&psig=AOvVaw1Uo6uyzL5fLvK_RQACSWyx&ust=1703311377795000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKjBu8evooMDFQAAAAAdAAAAABAD"
                 className="avatarProfile"
                 alt="Avatar"
               />{" "}

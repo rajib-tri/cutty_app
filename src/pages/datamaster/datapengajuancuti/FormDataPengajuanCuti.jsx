@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { Field, reduxForm,  } from "redux-form";
 import { ReanderTextArea } from "components/helper";
 
-// Function to check if the date range is valid
 const isValidDateRange = (startDate, endDate) => {
   const start = new Date(startDate);
   const end = new Date(endDate);

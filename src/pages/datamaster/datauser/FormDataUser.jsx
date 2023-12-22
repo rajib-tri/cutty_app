@@ -34,6 +34,7 @@ let FormDataUser = (props) => {
         <Col size="6">
           <Field
             name="nama_lengkap"
+            
             component={ReanderField}
             label="Nama Lengkap"
             placeholder="Please enter your full name"

@@ -29,7 +29,7 @@ function Datapengajuancuti() {
             dispatch(actionMaster.getDataPengajuanCuti());
         } catch (error) {
             console.log(error);
-            ToastNotification('info', 'Password Atau Username Salah');
+            ToastNotification('info', 'Terdapat Kesalahan Server');
         }
 
     };

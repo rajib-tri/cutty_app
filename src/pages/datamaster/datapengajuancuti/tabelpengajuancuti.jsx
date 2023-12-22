@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, TabelMaster, Row, Col, useDispatch, useSelector } from "components";
-import { actionMaster, selectorMaster, } from "reduxStore";
+import { actionMaster, selectorMaster, utilityAction } from "reduxStore";
 
-const Tabelpengajuancuti = () => {
+const TabelPengajuanCuti = () => {
   const dispatch = useDispatch();
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
@@ -12,7 +12,7 @@ const Tabelpengajuancuti = () => {
 
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
-    dispatch(actionMaster.deletepengajuancuti(row._id));
+    dispatch(actionMaster.deletePengajuanCuti(row._id)); // Updated action name
   };
 
   const columns = [
@@ -30,7 +30,20 @@ const Tabelpengajuancuti = () => {
       render: (cell, row) => (
         <Row className={`text-center`}>
           <Col size="12" className="mr-3 text-center">
-          &nbsp;
+            <Button
+              type="button"
+              color="info"
+              icon="fa-edit"
+              onClick={() =>
+                dispatch(
+                  utilityAction.modalShow({
+                    isModalShow: true,
+                    isEdit: true,
+                    data: row,
+                  })
+                )
+              }
+            />
             <Button
               type="button"
               color="danger"
@@ -43,7 +56,7 @@ const Tabelpengajuancuti = () => {
     },
   ];
 
-  const DataUser = useSelector(selectorMaster.getDataPengajuanCuti);
+  const dataPengajuanCuti = useSelector(selectorMaster.getDataPengajuanCuti); // Updated variable name
 
   const rowSelection = {
     selectedRowKeys,
@@ -56,11 +69,11 @@ const Tabelpengajuancuti = () => {
         rowKey={"_id"}
         createData={true}
         columns={columns}
-        dataSource={DataUser || []}
+        dataSource={dataPengajuanCuti || []}
         rowSelection={rowSelection}
       />
     </>
   );
 };
 
-export default Tabelpengajuancuti;
+export default TabelPengajuanCuti;

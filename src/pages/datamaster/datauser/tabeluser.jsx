@@ -10,6 +10,8 @@ const TabelUser = () => {
     dispatch(actionMaster.getDataUser());
   }, [dispatch]);
 
+  
+
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
     dispatch(actionMaster.deleteUser(row._id));
@@ -17,12 +19,12 @@ const TabelUser = () => {
 
   const columns = [
     {
-      title: "nama_lengkap",
+      title: "nama Lengkap",
       dataIndex: "nama_lengkap",
       key: "nama_lengkap",
     },
     {
-      title: "No_telepon",
+      title: "No Telepon",
       dataIndex: "no_telepon",
       key: "no_telepon",
     },

@@ -1,4 +1,4 @@
-import { Card, ModalGlobal, PanelContent, postData, useDispatch } from 'components'
+import { Card, ModalGlobal, PanelContent, postData, putData, useDispatch } from 'components'
 import React from 'react'
 import TabelPengajuanCuti from './tabelpengajuancuti'
 import FormDataPengajuanCuti from './FormDataPengajuanCuti'
@@ -11,9 +11,10 @@ function Datapengajuancuti() {
     const simpanData = async (data) => {
         try {
             if(data.id !== undefined){
-                
+                await putData(`leave-permissions/${data.id}`, {
+                    status: data.status.value
+                });
             } else {
-                
                 await postData('leave-permissions', {
                     nama_karyawan: data.nama_karyawan,
                     tanggal_mulai: data.tanggal_mulai,
@@ -22,7 +23,6 @@ function Datapengajuancuti() {
                     tanggal_permohonan: data.tanggal_permohonan,
                     status: data.status.value,
                 });
-            
             }
 
             dispatch(utilityAction.modalHide());

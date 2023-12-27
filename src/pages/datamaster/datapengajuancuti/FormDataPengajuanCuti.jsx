@@ -142,9 +142,11 @@ FormDataPengajuanCuti = reduxForm({
 
 export default connect((state) => {
   if (state?.utility?.modalShow?.isEdit === true) {
+    console.log(state?.utility?.modalShow)
     return {
       isEdit: state?.utility?.modalShow?.isEdit,
       initialValues: {
+        nama_karyawan: state?.utility?.modalShow?.data?.nama_karyawan,
         tanggal_mulai: converDate(state?.utility?.modalShow?.data?.tanggal_mulai),
         tanggal_akhir: converDate(state?.utility?.modalShow?.data?.tanggal_akhir),
         alasan: state?.utility?.modalShow?.data?.alasan,

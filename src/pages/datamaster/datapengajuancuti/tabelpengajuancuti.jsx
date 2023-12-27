@@ -12,7 +12,7 @@ const TabelPengajuanCuti = () => {
 
   const handleDelete = (row) => {
     console.log("Menghapus data:", row);
-    dispatch(actionMaster.deletePengajuanCuti(row._id)); // Updated action name
+    dispatch(actionMaster.deletepengajuancuti(row._id)); 
   };
 
   const columns = [
@@ -56,7 +56,7 @@ const TabelPengajuanCuti = () => {
     },
   ];
 
-  const dataPengajuanCuti = useSelector(selectorMaster.getDataPengajuanCuti); // Updated variable name
+  const dataPengajuanCuti = useSelector(selectorMaster.getDataPengajuanCuti); 
 
   const rowSelection = {
     selectedRowKeys,
